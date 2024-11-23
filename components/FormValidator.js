@@ -28,6 +28,8 @@ class FormValidator {
         if (errorElement) {
             errorElement.textContent = inputElement.validationMessage;
             errorElement.classList.add(this._errorClass);
+        } else {
+            console.warn(`Error element not found for selector: ${errorSelector}`);
         }
     }
 
@@ -50,7 +52,7 @@ class FormValidator {
 
     _hasInvalidInput() { 
         return this._inputList.some((inputElement) => {
-            !inputElement.validity.valid;
+            return !inputElement.validity.valid;
           });
     }
 
@@ -89,9 +91,21 @@ class FormValidator {
         });
     }
 
+    resetValidation() {
+        this._inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement);
+        });
+        this._toggleButtonState();
+        return {
+            inputList: this._inputList,
+            buttonState: this._buttonElement.disabled
+        };
+    }
+
     enableValidation() {
         this._formEl.addEventListener("submit", (evt) => {
-          evt.preventDefault();
+            this.resetValidation();
+            evt.preventDefault();
         });
         this._setEventListeners();
     }
