@@ -1,20 +1,29 @@
 class Todo {
-    constructor(data, selector) {
+    constructor(data, selector, handleCheck, handleDelete, handleTodo) {
         this._data = data;
         this._templateElement = document.querySelector(selector);
-
+        if (!this._templateElement) {
+            throw new Error(`No element found with selector: ${selector}`);
+        }
+        this._handleCheck = handleCheck;
+        this._handleDelete = handleDelete;
+        this._handleTodo = handleTodo;
     }
 
     _setEventListeners() { 
         this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
 
         this._todoCheckboxEl.addEventListener("change", () => {
-            this._data.completed = !this._todoCheckboxEl.completed;
+            this._data.completed = this._todoCheckboxEl.completed;
+            this._handleCheck(this._data.completed);
         });
 
         this._todoDeleteBtn.addEventListener("click", () => {
+            this._handleDelete(this._data.completed);
+            this._handleTodo(false);
             this._todoElement.remove();
         });
+
     }
 
     _generateCheckboxEl() {
@@ -36,6 +45,8 @@ class Todo {
                 month: "short",
                 day: "numeric",
             })}`;
+        }   else {
+            todoDate.textContent = "No due date";
         }
     }
 
