@@ -50,12 +50,12 @@ const section = new Section({
   renderer: (item) => {
     const todo = generateTodo(item);
     section.addItem(todo);
-    //todosList.append(todo);
+    todosList.append(todo);
   },
   containerSelector: ".todos__list",
 });
 
-//section.renderItems();
+section.renderItems();
 
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
