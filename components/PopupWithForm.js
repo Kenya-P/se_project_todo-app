@@ -26,18 +26,6 @@ class PopupWithForm extends Popup{
             this._handleFormSubmit(inputValues);
         });
     }
-
-    /* setEventListeners() {
-        super.setEventListeners();
-        this._popupElement.addEventListener("submit", (evt) => {
-            evt.preventDefault();
-            const inputValues = this._getInputValues();
-            this._handleFormSubmit(evt);
-            this._getInputValues();
-            this.close();
-            this._popupElement.reset();
-        });
-    } */
 } 
     
 export default PopupWithForm;

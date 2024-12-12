@@ -75,15 +75,12 @@ function handleTodo(deleted) {
   }
 }
 
-const generateTodo = (data) => {
-  const todo = new Todo
-  (
-    data, 
-    "#todo-template", {
-      handleCheck,
-      handleDelete,
-      handleTodo,
-  });
+function generateTodo (data) {
+  const todo = new Todo(data, "#todo-template",
+    handleCheck,
+    handleDelete,
+    handleTodo,
+  );
   return todo.getView();
 };
 

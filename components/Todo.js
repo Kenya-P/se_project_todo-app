@@ -1,13 +1,30 @@
 class Todo {
-    constructor(data, selector, handleCheck, handleTodo) {
+    constructor(data, selector, handleCheck, handleDelete, handleTodo) {
         this._data = data;
         this._templateElement = document.querySelector(selector);
         if (!this._templateElement) {
             throw new Error(`No element found with selector: ${selector}`);
         }
         this._handleCheck = handleCheck;
-        //this._handleDelete = handleDelete;
+        this._handleDelete = handleDelete;
         this._handleTodo = handleTodo;
+    }
+
+    _setEventListeners() { 
+        this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
+
+        this._todoCheckboxEl.addEventListener("change", () => {
+            this._data.completed = !this._data.completed;
+            this._handleCheck.updateCompleted(this._data.completed);
+            this._handleTodo.updateTotal(this._data.completed);
+        });
+
+        this._todoDeleteBtn.addEventListener("click", () => {
+            this._handleDelete.updateCompleted(this._data.completed);
+            this._handleTodo.updateTotal(false);
+            this._todoElement.remove();
+        });
+
     }
 
 
@@ -49,23 +66,6 @@ class Todo {
         this._setEventListeners();
 
         return this._todoElement;
-    }
-
-    _setEventListeners() { 
-        this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
-
-        this._todoCheckboxEl.addEventListener("change", () => {
-            this._data.completed = !this._data.completed;
-            this._handleCheck.updateCompleted(this._data.completed);
-            this._handleTodo.updateCompleted(this._data.completed);
-        });
-
-        this._todoDeleteBtn.addEventListener("click", () => {
-            this._handleTodo.updateCompleted(this._data.completed);
-            this._handleTodo.updateTotal(false);
-            this._todoElement.remove();
-        });
-
     }
 
 
