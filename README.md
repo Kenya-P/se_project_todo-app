@@ -27,5 +27,3 @@ The Simple Todo App is a user-friendly design to assist users with planning out 
 
 This project is deployed on GitHub Pages:
 
-https://kenya-p.github.io/se_project_todo-app/
-
