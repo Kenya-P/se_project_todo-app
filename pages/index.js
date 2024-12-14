@@ -25,12 +25,12 @@ const addTodoPopupEl = new PopupWithForm({
     const values = { name, date: new Date(dateInput), id };
     const todo = generateTodo(values);
     section.addItem(todo);
-    todosList.append(todo);
 
     todoCounter.updateTotal(true);
 
     addTodoPopupEl.close();
     addTodoForm.reset();
+    newTodoValidator.resetValidation();
   }
 });
 
@@ -49,7 +49,6 @@ const section = new Section({
   renderer: (item) => {
     const todo = generateTodo(item);
     section.addItem(todo);
-    todosList.append(todo);
   },
   containerSelector: ".todos__list",
 });
