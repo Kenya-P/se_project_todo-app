@@ -13,6 +13,7 @@ class TodoCounter {
         } else {
           this._completed -= 1;
         }
+      
           this._updateText();
         };
       
@@ -28,8 +29,6 @@ class TodoCounter {
       _updateText() {
           this._element.textContent = `Showing ${this._completed} out of ${this._total} completed`;
       }
-
-
 }
     
 export default TodoCounter;
