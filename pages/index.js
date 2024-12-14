@@ -18,7 +18,6 @@ const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 const addTodoPopupEl = new PopupWithForm({
   popupSelector: "#add-todo-popup",
   handleFormSubmit: (inputValues) => {
-    //evt.preventDefault();
     const name = inputValues.name;
     const dateInput = inputValues.date;
 
@@ -32,7 +31,7 @@ const addTodoPopupEl = new PopupWithForm({
 
     addTodoPopupEl.close();
     addTodoForm.reset();
-  },
+  }
 });
 
 addTodoPopupEl.setEventListeners();
